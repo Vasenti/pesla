@@ -1,32 +1,51 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="container">
+    <header>
+      <nav>
+        <img src="@/assets/pesla.png" alt="" class="logo">
+        <div class="menu-btn" @click="animateBurgerMenu()">
+          <div class="menu-btn__burger"></div>
+        </div>
+        <ul class="nav-ul">
+          <li><a href="#">Model X</a></li>
+          <li><a href="#">Model Y</a></li>
+          <li><a href="#">Model Z</a></li>
+          <li><a href="#">Model C</a></li>
+        </ul>
+        <ul class="nav-ul">
+          <li><a href="#">Store</a></li>
+          <li><a href="#">Account</a></li>
+        </ul>
+      </nav>
+    </header>
+    <transition>
+      <router-view/>
+    </transition>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  name: 'App',
+  components: {},
+  data() {
+    return {
+      openBurger: false,
+    }
+  },
+  methods: {
+    animateBurgerMenu(){
+      let menuBtn = document.querySelector('.menu-btn');
+      if(!this.openBurger) {
+        menuBtn?.classList.add('open');
+        this.openBurger = true;
+      }else {
+        menuBtn?.classList.remove('open');
+        this.openBurger = false;
+      }
     }
   }
 }
-</style>
+</script>
+
+<style scoped src="./assets/styles/app.css"></style>
